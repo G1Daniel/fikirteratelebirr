@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  script(src='http://46.101.30.203:3000/socket.io/socket.io.js')
+  - var socket = io();
+  
+  h1= title
+  p Welcome to #{title}
+  form(action='/pay', method='POST')
+    #error
+                if error
+                    p.text-danger #{msg}
+    p
+      | Subject: 
+      input(type='text', name='subject', value='')
+      |          Amount: 
+      input(type='number', name='amount',step=".01", min="1" value='')
+      
+    input(type='submit', value='Submit')
